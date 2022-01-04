@@ -17,7 +17,7 @@ const Expenses = (props) => {
             <Card className="expenses">
                 <ExpenseFilter onYearFilterChange={handleYearFilterChange}/>
                 <ExpensesList items = {
-                    yearEntered === null ? props.expenses : props.expenses.filter( expense => { return expense.date.getFullYear().toString() === yearEntered;})
+                    yearEntered === null || yearEntered === '' ? props.expenses : props.expenses.filter( expense => { return expense.date.getFullYear().toString() === yearEntered;})
                 }/>
             </Card>
         </div>
