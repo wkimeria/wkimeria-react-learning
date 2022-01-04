@@ -4,23 +4,21 @@ import ExpensesList from "./ExpensesList";
 import ExpenseFilter from "./ExpensesFilter"
 import Card from '../UI/Card';
 import './Expenses.css'
+import ExpenseItem from "./ExpenseItem";
 
 const Expenses = (props) => {
-
-    const [expenses, _] = useState(props.expenses);
-    const [filteredExpenses, setExpenses] = useState(props.expenses);
-
+    const [yearEntered, setYearEntered] = useState(null);
     const handleYearFilterChange = (yearEntered) => {
-        setExpenses(_ => {
-            return expenses.filter( expense => { return expense.date.getFullYear().toString() === yearEntered;});
-        })
+        setYearEntered(yearEntered);
     }
 
     return (
         <div>
             <Card className="expenses">
                 <ExpenseFilter onYearFilterChange={handleYearFilterChange}/>
-                <ExpensesList items ={filteredExpenses}/>
+                <ExpensesList items = {
+                    yearEntered === null ? props.expenses : props.expenses.filter( expense => { return expense.date.getFullYear().toString() === yearEntered;})
+                }/>
             </Card>
         </div>
     );

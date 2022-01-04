@@ -14,13 +14,10 @@ const INITIAL_EXPENSES = [
 const App =() =>{
 
     const [expenses, setExpenses] = useState(INITIAL_EXPENSES);
-
     const addExpenseHandler = (expense) => {
         setExpenses(prevExpenses => {
-            console.log("PREV " + prevExpenses);
             return[expense, ...prevExpenses];
         })
-        console.log(expense);
     }
   return (
     <div>
